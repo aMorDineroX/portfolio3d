@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20% 92%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+  }
+
+  /* Suppression du thème clair/sombre qui alterne, car on utilise directement le thème sombre */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: radial-gradient(rgba(0, 0, 50, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+}
+
+/* Styles améliorés pour l'application de trading */
+.candlestick-up {
+  fill: #16c784;
+  stroke: #16c784;
+}
+
+.candlestick-down {
+  fill: #ea3943;
+  stroke: #ea3943;
+}
+
+/* Animation pour le chargement */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Styles pour le composant Toaster */
+.slide-in-from-right-full {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Style pour les graphiques */
+.three-chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* S'assurer que les conteneurs de Three.js ont toujours une hauteur */
+[data-state=active] > div,
+[data-state=active] canvas {
+  height: 100% !important;
+  min-height: 450px;
+}
+
+/* Amélioration des onglets pour la vue 3D/2D */
+.tabs-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Style pour les cartes avec effet de brillance */
+.card-glow {
+  position: relative;
+  border: 1px solid rgba(99, 130, 255, 0.1);
+  box-shadow: 0 0 15px rgba(55, 84, 170, 0.15);
+  overflow: hidden;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 130, 255, 0.08), transparent);
+  transition: 0.5s;
+}
+
+.card-glow:hover::before {
+  left: 100%;
+}
+
+/* Style pour améliorer les tableaux */
+.market-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.market-table th {
+  background-color: rgba(99, 130, 255, 0.1);
+  font-weight: 600;
+  color: rgba(99, 130, 255, 0.9);
+}
+
+.market-table tr:hover td {
+  background-color: rgba(99, 130, 255, 0.05);
+}
+
+/* Style pour les boutons de trading */
+.buy-button {
+  background: linear-gradient(45deg, #00a389, #08b796);
+  box-shadow: 0 4px 12px rgba(0, 163, 137, 0.4);
+}
+
+.buy-button:hover {
+  background: linear-gradient(45deg, #00a389, #06d0ab);
+}
+
+.sell-button {
+  background: linear-gradient(45deg, #d1435b, #ea3643);
+  box-shadow: 0 4px 12px rgba(209, 67, 91, 0.4);
+}
+
+.sell-button:hover {
+  background: linear-gradient(45deg, #d1435b, #f73d4c);
+}
