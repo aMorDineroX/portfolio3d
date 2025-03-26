@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-// Utiliser un chemin relatif au lieu du chemin alias @/
 import { ToastProvider } from '../components/providers/toast-provider'
+import { ThemeSwitch } from '../components/theme-switch'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,10 +17,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <body className={inter.className}>
-        {children}
+        <main>{children}</main>
         <ToastProvider />
+        <ThemeSwitch />
       </body>
     </html>
   )
